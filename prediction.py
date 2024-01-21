@@ -1,57 +1,16 @@
 import streamlit as st
 import json
 import openai
+import tensorflow as tf
+import numpy as np
 
 openai.api_key = st.secrets["openai_api_key"]
-
+model = tf.keras.models.load_model('model.h5')
 
 def generate_advice(result):
     # Construct a prompt based on the user's input data
     prompt = f"Provide health benefits and preventive measures based on the following health data: {json.dumps(result)}"
     print(prompt)
-    llm_response="""
-Based on the provided health data, which includes age, gender, height, weight, blood pressure (ap_hi and ap_lo), cholesterol level, glucose level, smoking and alcohol status, activity level, and a calculated cardiac risk percentage, here are some general health benefits and preventive measures:
-
-### Health Benefits:
-
-1. **Normal Blood Pressure (ap_hi: 120, ap_lo: 77):**
-   - The blood pressure values fall within the normal range, reducing the risk of cardiovascular diseases such as heart attacks and strokes.
-
-2. **Non-Smoker (Smoke: 0) and Non-Drinker (Alcohol: 0):**
-   - Not smoking and limiting alcohol intake are associated with a lower risk of cardiovascular diseases and various health issues.
-
-3. **Normal Cholesterol Level (cholesterol: 0):**
-   - A cholesterol level of 0 suggests a healthy cholesterol profile, lowering the risk of heart disease.
-
-4. **Normal Glucose Level (gluc: 0):**
-   - A glucose level of 0 indicates a healthy blood glucose level, reducing the risk of diabetes and related complications.
-
-### Preventive Measures:
-
-1. **Maintain a Healthy Weight:**
-   - Given the height (170 cm) and weight (70 kg), maintaining or working towards a healthy weight is important for overall well-being.
-
-2. **Healthy Diet:**
-   - Emphasize a balanced diet rich in fruits, vegetables, whole grains, lean proteins, and healthy fats to support overall health.
-
-3. **Regular Health Check-ups:**
-   - Periodic health check-ups can help monitor blood pressure, cholesterol, and glucose levels, allowing for early detection and management of any potential issues.
-
-4. **Physical Activity (Active: 0):**
-   - Consider incorporating regular physical activity into the routine, such as brisk walking, jogging, or other forms of exercise to promote cardiovascular health.
-
-5. **Stress Management:**
-   - Incorporate stress management techniques, such as mindfulness, meditation, or hobbies, to support mental well-being.
-
-6. **Healthy Lifestyle Choices:**
-   - Continue with a non-smoking and non-drinking lifestyle to further reduce the risk of cardiovascular diseases and other health problems.
-
-7. **Cardiac Risk Awareness (Cardiac Risk: 17%):**
-   - While the calculated cardiac risk is relatively low, it's essential to stay aware of cardiovascular health and continue with preventive measures.
-
-It's important to note that these recommendations are general and may not capture all individual health considerations. Individuals with specific health conditions or concerns should consult with healthcare professionals for personalized advice and guidance.
-    """
-    return llm_response
 
     # Make an API call to OpenAI's completion endpoint using the new interface
     response = openai.ChatCompletion.create(
@@ -132,13 +91,17 @@ def show_prediction_page():
                 "smoke": smoke_value,
                 "alco": alcohol_value,
                 "active": active_value,
-                "cardiac_risk":"17%"
+                #"cardiac_risk":"17%"
             }
 
             # Convert the dictionary to a JSON string for display
             result_json = json.dumps(result)
             st.json(result_json)  # Display the JSON in the Streamlit app
+            numpy_array = np.array(result_json)
+            res=model.predict(numpy_array)
             advice = generate_advice(result)
+            st.write("Your heart Risk Condition")
+            st.write(res)
             st.write("Health Benefits and Preventive Measures:")
             st.write(advice)
 

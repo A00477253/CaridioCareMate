@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def show_home_page():
     # URL of the dataset
-    url = 'C:\\Users\\91866\\health.csv'
+    url = "C:\\Users\\risvarrt\\Downloads\\final_updated_health_data.csv"
 
     # Load the dataset
     df = pd.read_csv(url)
