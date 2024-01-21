@@ -93,9 +93,9 @@ def show_prediction_page():
             # Convert the dictionary to a JSON string for display
             result_json = json.dumps(result)
             st.json(result_json)  # Display the JSON in the Streamlit app
-            #advice = generate_advice(result)
-            #st.write("Health Benefits and Preventive Measures:")
-            #st.write(advice)
+            advice = generate_advice(result)
+            st.write("Health Benefits and Preventive Measures:")
+            st.write(advice)
 
 # Only run the app if this file is executed as a script (not imported)
 if __name__ == '__main__':
