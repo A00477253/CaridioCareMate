@@ -52,6 +52,8 @@ Relevant literature and studies that have influenced the development of CardioCa
 - [MedRxiv Study](https://www.medrxiv.org/content/10.1101/2023.05.22.23289842v1)
 - [Research on Coronary Artery Disease](https://rdcu.be/dwwwb)
 ## Video Demo
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)]((./Screen Recording 2024-01-21 at 2.38.54 PM.mov
+
 *Note: A video demonstration of CardioCareMate will be attached below.*
 
 ## Conclusion
