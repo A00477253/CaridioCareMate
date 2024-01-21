@@ -52,7 +52,8 @@ Relevant literature and studies that have influenced the development of CardioCa
 - [MedRxiv Study](https://www.medrxiv.org/content/10.1101/2023.05.22.23289842v1)
 - [Research on Coronary Artery Disease](https://rdcu.be/dwwwb)
 ## Video Demo
-[Watch the demo video](Screen Recording 2024-01-21 at 2.38.54 PM.mov)
+[![Watch the video](https://img.youtube.com/vi/cGTrlFlb-o8/0.jpg)](https://www.youtube.com/watch?v=cGTrlFlb-o8)
+
 
 ## Conclusion
 CardioCareMate is at the forefront of utilizing AI and machine learning in healthcare, offering a user-friendly platform for disease prediction and healthcare management.
